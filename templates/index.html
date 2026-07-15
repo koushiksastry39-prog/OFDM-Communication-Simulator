@@ -23,47 +23,47 @@
 
 <div class="container">
 
-    <!-- Statistics Cards -->
+    <!-- ================= Statistics ================= -->
 
     <div class="cards">
 
         <div class="card">
-            <h3>Modulation</h3>
+            <h3>📡 Modulation</h3>
             <p>{{ modulation }}</p>
         </div>
 
         <div class="card">
-            <h3>SNR</h3>
+            <h3>📶 SNR</h3>
             <p>{{ snr }} dB</p>
         </div>
 
         <div class="card">
-            <h3>BER</h3>
+            <h3>📉 BER</h3>
             <p>{{ "%.6f"|format(ber) }}</p>
         </div>
 
         <div class="card">
-            <h3>Errors</h3>
+            <h3>⚠ Errors</h3>
             <p>{{ errors }}</p>
         </div>
 
         <div class="card">
-            <h3>Bits</h3>
+            <h3>🔢 Bits</h3>
             <p>{{ num_bits }}</p>
         </div>
 
         <div class="card">
-            <h3>Subcarriers</h3>
+            <h3>📊 Subcarriers</h3>
             <p>{{ subcarriers }}</p>
         </div>
 
     </div>
 
-    <!-- Simulation Controls -->
+    <!-- ================= Controls ================= -->
 
     <div class="controls">
 
-        <h2>Simulation Controls</h2>
+        <h2>⚙ Simulation Controls</h2>
 
         <form action="/" method="POST">
 
@@ -127,73 +127,91 @@
 
             </div>
 
-            <br>
+            <div class="button-group">
 
-            <button type="submit">
+                <button type="submit">
 
-    ▶ Run Simulation
+                    ▶ Run Simulation
 
-</button>
+                </button>
 
-<br><br>
+                <a href="/download_report">
 
-<a href="/download_report">
+                    <button type="button">
 
-    <button type="button">
+                        📄 Download PDF Report
 
-        📄 Download PDF Report
+                    </button>
 
-    </button>
+                </a>
 
-</a>
-
-</form>>
+            </div>
 
         </form>
 
     </div>
 
-    <!-- Graphs -->
+    <!-- ================= Graphs ================= -->
 
     <div class="graph-grid">
 
         <div class="graph-card">
 
-            <h2>Input Binary Data</h2>
+            <h2>📈 Input Binary Data</h2>
 
-            {{ bits_graph|safe }}
+            <div class="plot">
 
-        </div>
+                {{ bits_graph|safe }}
 
-        <div class="graph-card">
-
-            <h2>BPSK Symbols</h2>
-
-            {{ bpsk_graph|safe }}
+            </div>
 
         </div>
 
         <div class="graph-card">
 
-            <h2>OFDM Signal</h2>
+            <h2>📡 BPSK Symbols</h2>
 
-            {{ ofdm_graph|safe }}
+            <div class="plot">
+
+                {{ bpsk_graph|safe }}
+
+            </div>
 
         </div>
 
         <div class="graph-card">
 
-            <h2>Received Signal</h2>
+            <h2>🌊 OFDM Signal</h2>
 
-            {{ received_graph|safe }}
+            <div class="plot">
+
+                {{ ofdm_graph|safe }}
+
+            </div>
+
+        </div>
+
+        <div class="graph-card">
+
+            <h2>📶 Received Signal</h2>
+
+            <div class="plot">
+
+                {{ received_graph|safe }}
+
+            </div>
 
         </div>
 
         <div class="graph-card full-width">
 
-            <h2>Constellation Diagram</h2>
+            <h2>⭐ Constellation Diagram</h2>
 
-            {{ constellation_graph|safe }}
+            <div class="plot">
+
+                {{ constellation_graph|safe }}
+
+            </div>
 
         </div>
 
@@ -201,7 +219,9 @@
 
     <footer>
 
-       .......
+        <p>
+            OFDM Communication Simulator 
+        </p>
 
     </footer>
 
