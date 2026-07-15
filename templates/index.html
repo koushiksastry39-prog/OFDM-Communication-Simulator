@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OFDM Communication Simulator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    📡 OFDM Communication Simulator
+
+</header>
+
+<div class="container">
+
+    <!-- Statistics Cards -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Modulation</h3>
+            <p>{{ modulation }}</p>
+        </div>
+
+        <div class="card">
+            <h3>SNR</h3>
+            <p>{{ snr }} dB</p>
+        </div>
+
+        <div class="card">
+            <h3>BER</h3>
+            <p>{{ "%.6f"|format(ber) }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Errors</h3>
+            <p>{{ errors }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Bits</h3>
+            <p>{{ num_bits }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Subcarriers</h3>
+            <p>{{ subcarriers }}</p>
+        </div>
+
+    </div>
+
+    <!-- Simulation Controls -->
+
+    <div class="controls">
+
+        <h2>Simulation Controls</h2>
+
+        <form action="/" method="POST">
+
+            <div class="control-grid">
+
+                <div class="control-item">
+
+                    <label>Number of Bits</label>
+
+                    <select name="bits">
+
+                        <option value="16">16</option>
+                        <option value="32">32</option>
+                        <option value="64">64</option>
+                        <option value="128">128</option>
+
+                    </select>
+
+                </div>
+
+                <div class="control-item">
+
+                    <label>Subcarriers</label>
+
+                    <select name="subcarriers">
+
+                        <option value="4">4</option>
+                        <option value="8">8</option>
+                        <option value="16">16</option>
+
+                    </select>
+
+                </div>
+
+                <div class="control-item">
+
+                    <label>SNR (dB)</label>
+
+                    <input
+                        type="number"
+                        name="snr"
+                        min="0"
+                        max="30"
+                        value="{{ snr }}">
+
+                </div>
+
+                <div class="control-item">
+
+                    <label>Modulation</label>
+
+                    <select name="modulation">
+
+                        <option value="BPSK">BPSK</option>
+                        <option value="QPSK">QPSK</option>
+                        <option value="16QAM">16-QAM</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <button type="submit">
+
+    ▶ Run Simulation
+
+</button>
+
+<br><br>
+
+<a href="/download_report">
+
+    <button type="button">
+
+        📄 Download PDF Report
+
+    </button>
+
+</a>
+
+</form>>
+
+        </form>
+
+    </div>
+
+    <!-- Graphs -->
+
+    <div class="graph-grid">
+
+        <div class="graph-card">
+
+            <h2>Input Binary Data</h2>
+
+            {{ bits_graph|safe }}
+
+        </div>
+
+        <div class="graph-card">
+
+            <h2>BPSK Symbols</h2>
+
+            {{ bpsk_graph|safe }}
+
+        </div>
+
+        <div class="graph-card">
+
+            <h2>OFDM Signal</h2>
+
+            {{ ofdm_graph|safe }}
+
+        </div>
+
+        <div class="graph-card">
+
+            <h2>Received Signal</h2>
+
+            {{ received_graph|safe }}
+
+        </div>
+
+        <div class="graph-card full-width">
+
+            <h2>Constellation Diagram</h2>
+
+            {{ constellation_graph|safe }}
+
+        </div>
+
+    </div>
+
+    <footer>
+
+       .......
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>
