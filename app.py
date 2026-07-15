@@ -87,7 +87,11 @@ def home():
         yaxis_title="Bit Value"
     )
 
-    bits_graph = pio.to_html(bits_fig, full_html=False)
+    bits_graph = pio.to_html(
+    bits_fig,
+    full_html=False,
+    config={"responsive": True}
+)
 
     # BPSK Graph
     bpsk_fig = go.Figure()
@@ -106,7 +110,11 @@ def home():
         yaxis_title="Amplitude"
     )
 
-    bpsk_graph = pio.to_html(bpsk_fig, full_html=False)
+    bpsk_graph = pio.to_html(
+    bpsk_fig,
+    full_html=False,
+    config={"responsive": True}
+)
 
     # OFDM Signal Graph
     ofdm_fig = go.Figure()
@@ -125,7 +133,11 @@ def home():
         yaxis_title="Amplitude"
     )
 
-    ofdm_graph = pio.to_html(ofdm_fig, full_html=False)
+    ofdm_graph = pio.to_html(
+        ofdm_fig,
+        full_html=False,
+        config={"responsive": True}
+    )
 
     # Constellation Diagram
     constellation_fig = go.Figure()
@@ -147,7 +159,33 @@ def home():
 
     constellation_graph = pio.to_html(
         constellation_fig,
-        full_html=False
+        full_html=False,
+        config={"responsive": True}
+    )
+
+    # Received Signal Graph
+    received_fig = go.Figure()
+
+    received_fig.add_trace(
+        go.Scatter(
+            y=received_signal.flatten().real,
+            mode='lines',
+            name='Received Signal'
+        )
+    )
+
+    received_fig.update_layout(
+        title="Received Signal",
+        xaxis_title="Sample",
+        yaxis_title="Amplitude",
+        autosize=True,
+        height=420
+    )
+
+    received_graph = pio.to_html(
+        received_fig,
+        full_html=False,
+        config={"responsive": True}
     )
 
     return render_template(
@@ -166,7 +204,7 @@ def home():
         bits_graph=bits_graph,
         bpsk_graph=bpsk_graph,
         ofdm_graph=ofdm_graph,
-        received_graph=constellation_graph,
+        received_graph=received_graph,
         constellation_graph=constellation_graph,
         num_bits=num_bits,
         subcarriers=subcarriers,
